@@ -83,11 +83,6 @@ body {
   overflow-x: auto;
 }
 
-/* Ensure document editor maintains desktop layout */
-.document-editor-layout {
-  min-width: 1280px;
-}
-
 /* Prevent mobile browser from resizing */
 * {
   -webkit-text-size-adjust: 100%;

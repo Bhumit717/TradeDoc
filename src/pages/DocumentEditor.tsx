@@ -113,10 +113,42 @@ const DocumentEditor: React.FC = () => {
         }));
     }, [data.items]);
 
+    const [sidebarWidth, setSidebarWidth] = React.useState(500); // Increased default width
+    const [isResizing, setIsResizing] = React.useState(false);
+
+    const handleMouseDown = () => {
+        setIsResizing(true);
+    };
+
+    React.useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            if (isResizing) {
+                const newWidth = e.clientX;
+                if (newWidth > 300 && newWidth < window.innerWidth - 400) {
+                    setSidebarWidth(newWidth);
+                }
+            }
+        };
+
+        const handleMouseUp = () => {
+            setIsResizing(false);
+        };
+
+        if (isResizing) {
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
+        }
+
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+        };
+    }, [isResizing]);
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
             {/* TOOLBAR */}
-            <div className="no-print" style={{ padding: '10px 20px', backgroundColor: 'white', borderBottom: '1px solid #ddd', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div className="no-print" style={{ padding: '10px 20px', backgroundColor: 'white', borderBottom: '1px solid #ddd', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 10 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
                     <div>
                         <label style={{ fontSize: '10px', color: '#666', fontWeight: 'bold' }}>DOCUMENT TYPE</label>
@@ -133,14 +165,14 @@ const DocumentEditor: React.FC = () => {
                     </div>
                     <div style={{ fontWeight: 'bold', fontSize: '18px' }}>{data.documentNumber}</div>
                 </div>
-                <button onClick={() => window.print()} style={{ display: 'flex', gap: '5px', padding: '8px 16px', backgroundColor: '#0f172a', color: 'white', borderRadius: '4px', border: 'none' }}>
+                <button onClick={() => window.print()} style={{ display: 'flex', gap: '5px', padding: '8px 16px', backgroundColor: '#0f172a', color: 'white', borderRadius: '4px', border: 'none', cursor: 'pointer' }}>
                     <Printer size={16} /> Print / PDF
                 </button>
             </div>
 
-            <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+            <div style={{ display: 'flex', flex: 1, overflow: 'hidden', position: 'relative' }}>
                 {/* LEFT: INPUTS */}
-                <div className="no-print" style={{ width: '450px', backgroundColor: '#f8fafc', borderRight: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column' }}>
+                <div className="no-print document-editor-sidebar" style={{ width: `${sidebarWidth}px`, backgroundColor: '#f8fafc', borderRight: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', position: 'relative' }}>
                     <div style={{ padding: '15px', borderBottom: '1px solid #e2e8f0', backgroundColor: 'white' }}>
                         <AIInputSection
                             documentType={data.documentType}
@@ -154,9 +186,45 @@ const DocumentEditor: React.FC = () => {
                     })()}
                 </div>
 
+                {/* RESIZER */}
+                <div
+                    className="no-print"
+                    onMouseDown={handleMouseDown}
+                    style={{
+                        width: '5px',
+                        cursor: 'col-resize',
+                        backgroundColor: isResizing ? '#3b82f6' : '#e2e8f0',
+                        position: 'relative',
+                        zIndex: 5,
+                        transition: 'background-color 0.2s',
+                        borderLeft: '1px solid #cbd5e1',
+                        borderRight: '1px solid #cbd5e1'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3b82f6'}
+                    onMouseLeave={(e) => !isResizing && (e.currentTarget.style.backgroundColor = '#e2e8f0')}
+                >
+                    <div style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: '20px',
+                        height: '40px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: isResizing ? '#3b82f6' : '#94a3b8',
+                        borderRadius: '4px',
+                        pointerEvents: 'none'
+                    }}>
+                        <div style={{ width: '2px', height: '20px', backgroundColor: 'white', marginRight: '2px' }}></div>
+                        <div style={{ width: '2px', height: '20px', backgroundColor: 'white' }}></div>
+                    </div>
+                </div>
+
                 {/* RIGHT: PREVIEW */}
-                <div style={{ flex: 1, overflowY: 'auto', padding: '40px', backgroundColor: '#525659', display: 'flex', justifyContent: 'center' }}>
-                    <div style={{ transform: 'scale(1)', transformOrigin: 'top center' }}>
+                <div className="document-preview" style={{ flex: 1, overflowY: 'auto', padding: '40px', backgroundColor: '#525659', display: 'flex', justifyContent: 'center' }}>
+                    <div className="document-preview-inner" style={{ transform: 'scale(1)', transformOrigin: 'top center' }}>
                         <div style={{ width: '210mm', minHeight: '297mm', backgroundColor: 'white', padding: '10mm', boxShadow: '0 0 10px rgba(0,0,0,0.5)' }}>
                             {(() => {
                                 const TemplateComponent = TEMPLATE_REGISTRY[data.documentType] || StandardGSTTemplate;
@@ -171,6 +239,7 @@ const DocumentEditor: React.FC = () => {
                 .input-label { display: block; font-size: 11px; font-weight: 600; color: #64748b; margin-bottom: 4px; text-transform: uppercase; }
                 .input-field { width: 100%; padding: 8px; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 4px; outline: none; }
                 .input-field:focus { border-color: #2563eb; }
+                .document-editor-sidebar { user-select: ${isResizing ? 'none' : 'auto'}; }
             `}</style>
         </div>
     );
