@@ -31,6 +31,24 @@ body {
   color: #0f172a;
 }
 
+/* Force all form inputs to 100% width */
+input,
+textarea,
+select {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="tel"],
+textarea,
+select {
+  width: 100% !important;
+}
+
 /* Print Styles */
 @media print {
   .no-print {

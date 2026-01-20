@@ -95,7 +95,7 @@ const TaxInvoiceForm: React.FC<FormProps> = ({ data, onChange }) => {
                 .section-box { padding: 15px; background: white; border-radius: 8px; border: 1px solid #e2e8f0; }
                 .item-card { padding: 12px; background: white; border-radius: 6px; border: 1px solid #e2e8f0; border-left: 4px solid; margin-bottom: 10px; }
                 .input-label { font-size: 10px; font-weight: bold; color: #64748b; margin-bottom: 4px; display: block; }
-                .input-field { width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 13px; }
+                .input-field { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; padding: 8px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 13px; }
                 .add-btn { margin-top: 10px; padding: 10px; border: 2px dashed #cbd5e1; background: none; border-radius: 6px; width: 100%; cursor: pointer; font-weight: bold; }
             `}</style>
         </div>

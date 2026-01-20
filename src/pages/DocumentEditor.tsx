@@ -245,7 +245,7 @@ const DocumentEditor: React.FC = () => {
 
             <style>{`
                 .input-label { display: block; font-size: 11px; font-weight: 600; color: #64748b; margin-bottom: 4px; text-transform: uppercase; }
-                .input-field { width: 100%; padding: 8px; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 4px; outline: none; }
+                .input-field { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; padding: 8px; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 4px; outline: none; }
                 .input-field:focus { border-color: #2563eb; }
                 .document-editor-sidebar { user-select: ${isResizingRef.current ? 'none' : 'auto'}; }
             `}</style>
