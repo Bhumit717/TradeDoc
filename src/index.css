@@ -107,17 +107,26 @@ body {
   overflow-x: hidden;
 }
 
+/* Default desktop layout */
+.document-editor-layout {
+  flex-direction: row;
+}
+
 /* Mobile: Stack vertically (default) */
 @media (max-width: 768px) {
   .document-editor-layout {
     flex-direction: column !important;
+    height: auto !important;
   }
 
   .document-editor-sidebar {
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 100% !important;
     border-right: none !important;
     border-bottom: 2px solid #e2e8f0 !important;
+    height: auto !important;
+    max-height: 60vh !important;
   }
 
   .resizer {
