@@ -177,7 +177,8 @@ const DocumentEditor: React.FC = () => {
                 </button>
             </div>
 
-            <div style={{ display: 'flex', flex: 1, overflow: 'hidden', position: 'relative' }}>
+
+            <div className="document-editor-layout" style={{ display: 'flex', flex: 1, overflow: 'hidden', position: 'relative' }}>
                 {/* LEFT: INPUTS */}
                 <div className="no-print document-editor-sidebar" style={{ width: `${sidebarWidth}px`, backgroundColor: '#f8fafc', borderRight: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', position: 'relative' }}>
                     <div style={{ padding: '15px', borderBottom: '1px solid #e2e8f0', backgroundColor: 'white' }}>
@@ -195,7 +196,7 @@ const DocumentEditor: React.FC = () => {
 
                 {/* RESIZER */}
                 <div
-                    className="no-print"
+                    className="no-print resizer"
                     onMouseDown={handleMouseDown}
                     style={{
                         width: '5px',
