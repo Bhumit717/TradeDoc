@@ -77,91 +77,19 @@ body {
   background: #94a3b8;
 }
 
-/* Responsive Design - Mobile First */
-@media (max-width: 768px) {
-  body {
-    font-size: 14px;
-  }
-
-  /* Hide sidebar on mobile, make it full width */
-  .document-editor-layout {
-    flex-direction: column !important;
-  }
-
-  .document-editor-sidebar {
-    width: 100% !important;
-    border-right: none !important;
-    border-bottom: 1px solid #e2e8f0;
-    max-height: 50vh;
-  }
-
-  .document-preview {
-    padding: 20px 10px !important;
-  }
-
-  /* Scale down document preview for mobile */
-  .document-preview-inner {
-    transform: scale(0.5) !important;
-    transform-origin: top center !important;
-  }
+/* Force Desktop View on All Devices */
+body {
+  min-width: 1280px;
+  overflow-x: auto;
 }
 
-@media (max-width: 640px) {
-
-  /* Smaller mobile phones */
-  .document-preview-inner {
-    transform: scale(0.4) !important;
-  }
-
-  /* Stack form fields vertically */
-  .input-grid-2 {
-    grid-template-columns: 1fr !important;
-  }
+/* Ensure document editor maintains desktop layout */
+.document-editor-layout {
+  min-width: 1280px;
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-
-  /* Tablets */
-  .document-editor-sidebar {
-    width: 350px !important;
-  }
-
-  .document-preview-inner {
-    transform: scale(0.75) !important;
-  }
-}
-
-@media (min-width: 1025px) and (max-width: 1440px) {
-
-  /* Small desktops/laptops */
-  .document-editor-sidebar {
-    width: 400px !important;
-  }
-
-  .document-preview-inner {
-    transform: scale(0.9) !important;
-  }
-}
-
-@media (min-width: 1441px) {
-
-  /* Large screens */
-  .document-editor-sidebar {
-    width: 450px !important;
-  }
-
-  .document-preview-inner {
-    transform: scale(1) !important;
-  }
-}
-
-/* Ultra-wide screens */
-@media (min-width: 2560px) {
-  .document-editor-sidebar {
-    width: 600px !important;
-  }
-
-  .document-preview-inner {
-    transform: scale(1.2) !important;
-  }
+/* Prevent mobile browser from resizing */
+* {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
