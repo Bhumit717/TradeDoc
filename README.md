@@ -1,73 +1,78 @@
-# React + TypeScript + Vite
+# TradeDoc AI - Professional Invoice Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🎨 Features
+- **20+ Document Types**: Tax Invoice, Quotation, Purchase Order, Export Invoice, Bill of Supply, Delivery Challan, Work Order, Debit/Credit Notes, Receipts, and more
+- **Unique Templates**: Each document type has a specialized, professionally designed template
+- **AI-Powered**: Generate invoices from natural language using Gemini AI
+- **Responsive Design**: Works perfectly on mobile, tablet, and desktop
+- **Print-Ready**: Professional PDFs with proper formatting
+- **GST Compliant**: Full Indian GST tax calculations
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
+**Coming soon - Deploy this to Vercel**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📋 Document Types Supported
+- Tax Invoices & Proforma Invoices
+- GST Bill of Supply
+- Export/Commercial Invoices (with port & vessel details)
+- Delivery Challans
+- Quotations & Estimates
+- Purchase Orders & Sales Orders
+- Work Orders
+- Payment & Expense Vouchers
+- Money Receipts
+- Debit & Credit Notes
+- Packing Lists
+- Service Invoices
 
-## React Compiler
+## 💻 Tech Stack
+- **Frontend**: React 18 + TypeScript + Vite
+- **Styling**: CSS with responsive breakpoints
+- **AI**: Google Gemini API
+- **PDF**: Print-to-PDF functionality
+- **Icons**: Lucide React
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Installation
 
-## Expanding the ESLint configuration
+```bash
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/tradedoc-ai-invoice-generator.git
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Install dependencies
+cd tradedoc-ai-invoice-generator
+npm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Start development server
+npm run dev
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Build for production
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🔑 Environment Variables
+Create a `.env` file:
 ```
+VITE_GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+## 📱 Responsive Design
+- **Mobile**: Optimized for phones (320px+)
+- **Tablet**: Perfect for iPads (768px+)
+- **Desktop**: Full experience (1024px+)
+- **4K**: Scaled for ultra-wide displays (2560px+)
+
+## 🎯 Usage
+1. Select document type from dropdown
+2. Use AI to generate from text or fill manually
+3. Preview updates in real-time
+4. Print or save as PDF
+
+## 📄 License
+MIT License - Feel free to use for personal or commercial projects
+
+## 👨‍💻 Developer
+Built with ❤️ for businesses needing professional invoicing
+
+---
+
+**Star ⭐ this repo if you find it helpful!**
