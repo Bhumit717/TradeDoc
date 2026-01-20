@@ -178,9 +178,10 @@ const DocumentEditor: React.FC = () => {
             </div>
 
 
+
             <div className="document-editor-layout" style={{ display: 'flex', flex: 1, overflow: 'hidden', position: 'relative' }}>
                 {/* LEFT: INPUTS */}
-                <div className="no-print document-editor-sidebar" style={{ width: `${sidebarWidth}px`, backgroundColor: '#f8fafc', borderRight: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+                <div className="no-print document-editor-sidebar" style={{ width: `${sidebarWidth}px`, backgroundColor: '#f8fafc', borderRight: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', position: 'relative', overflowY: 'auto' }}>
                     <div style={{ padding: '15px', borderBottom: '1px solid #e2e8f0', backgroundColor: 'white' }}>
                         <AIInputSection
                             documentType={data.documentType}
