@@ -179,9 +179,9 @@ const DocumentEditor: React.FC = () => {
 
 
 
-            <div className="document-editor-layout" style={{ display: 'flex', flex: 1, overflow: 'hidden', position: 'relative' }}>
+            <div className="document-editor-layout">
                 {/* LEFT: INPUTS */}
-                <div className="no-print document-editor-sidebar" style={{ width: `${sidebarWidth}px`, backgroundColor: '#f8fafc', borderRight: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', position: 'relative', overflowY: 'auto' }}>
+                <div className="no-print document-editor-sidebar" style={{ width: `${sidebarWidth}px` }}>
                     <div style={{ padding: '15px', borderBottom: '1px solid #e2e8f0', backgroundColor: 'white' }}>
                         <AIInputSection
                             documentType={data.documentType}
@@ -232,7 +232,7 @@ const DocumentEditor: React.FC = () => {
                 </div>
 
                 {/* RIGHT: PREVIEW */}
-                <div className="document-preview" style={{ flex: 1, overflowY: 'auto', padding: '40px', backgroundColor: '#525659', display: 'flex', justifyContent: 'center' }}>
+                <div className="document-preview">
                     <div className="document-preview-inner" style={{ transform: 'scale(1)', transformOrigin: 'top center' }}>
                         <div style={{ width: '210mm', minHeight: '297mm', backgroundColor: 'white', padding: '10mm', boxShadow: '0 0 10px rgba(0,0,0,0.5)' }}>
                             {(() => {
