@@ -1,0 +1,74 @@
+:root {
+  /* Professional Color Palette (Deep Blue / Grayscale) */
+  --primary: #0f172a; /* Slate 900 */
+  --primary-light: #334155; /* Slate 700 */
+  --accent: #2563eb; /* Blue 600 */
+  --accent-foreground: #ffffff;
+  
+  --background: #f8fafc; /* Slate 50 */
+  --surface: #ffffff;
+  --surface-border: #e2e8f0; /* Slate 200 */
+  
+  --text-main: #1e293b; /* Slate 800 */
+  --text-muted: #64748b; /* Slate 500 */
+  
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --radius: 6px;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Print Styles - CRITICAL for PDF Generation */
+@media print {
+  body {
+    background-color: white;
+    color: black;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+  
+  /* Reset margins for printing to ensure full page usage */
+  @page {
+    margin: 0;
+    size: auto;
+  }
+}

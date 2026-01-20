@@ -1,0 +1,167 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body,
+  html {
+    background-color: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .main-content {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Center the document for printing */
+  .gst-template {
+    width: 210mm !important;
+    margin: 0 auto !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Responsive Design - Mobile First */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  /* Hide sidebar on mobile, make it full width */
+  .document-editor-layout {
+    flex-direction: column !important;
+  }
+
+  .document-editor-sidebar {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid #e2e8f0;
+    max-height: 50vh;
+  }
+
+  .document-preview {
+    padding: 20px 10px !important;
+  }
+
+  /* Scale down document preview for mobile */
+  .document-preview-inner {
+    transform: scale(0.5) !important;
+    transform-origin: top center !important;
+  }
+}
+
+@media (max-width: 640px) {
+
+  /* Smaller mobile phones */
+  .document-preview-inner {
+    transform: scale(0.4) !important;
+  }
+
+  /* Stack form fields vertically */
+  .input-grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  /* Tablets */
+  .document-editor-sidebar {
+    width: 350px !important;
+  }
+
+  .document-preview-inner {
+    transform: scale(0.75) !important;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+
+  /* Small desktops/laptops */
+  .document-editor-sidebar {
+    width: 400px !important;
+  }
+
+  .document-preview-inner {
+    transform: scale(0.9) !important;
+  }
+}
+
+@media (min-width: 1441px) {
+
+  /* Large screens */
+  .document-editor-sidebar {
+    width: 450px !important;
+  }
+
+  .document-preview-inner {
+    transform: scale(1) !important;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 2560px) {
+  .document-editor-sidebar {
+    width: 600px !important;
+  }
+
+  .document-preview-inner {
+    transform: scale(1.2) !important;
+  }
+}
