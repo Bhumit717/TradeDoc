@@ -113,16 +113,14 @@ const DocumentEditor: React.FC = () => {
         }));
     }, [data.items]);
 
-    const [sidebarWidth, setSidebarWidth] = React.useState(500); // Increased default width
-    const [isResizing, setIsResizing] = React.useState(false);
 
-    const handleMouseDown = () => {
-        setIsResizing(true);
-    };
+    const [sidebarWidth, setSidebarWidth] = React.useState(500); // Increased default width
+    const isResizingRef = React.useRef(false);
 
     React.useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
-            if (isResizing) {
+            if (isResizingRef.current) {
+                e.preventDefault();
                 const newWidth = e.clientX;
                 if (newWidth > 300 && newWidth < window.innerWidth - 400) {
                     setSidebarWidth(newWidth);
@@ -131,19 +129,28 @@ const DocumentEditor: React.FC = () => {
         };
 
         const handleMouseUp = () => {
-            setIsResizing(false);
+            if (isResizingRef.current) {
+                isResizingRef.current = false;
+                document.body.style.cursor = '';
+                document.body.style.userSelect = '';
+            }
         };
 
-        if (isResizing) {
-            document.addEventListener('mousemove', handleMouseMove);
-            document.addEventListener('mouseup', handleMouseUp);
-        }
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
 
         return () => {
             document.removeEventListener('mousemove', handleMouseMove);
             document.removeEventListener('mouseup', handleMouseUp);
         };
-    }, [isResizing]);
+    }, []);
+
+    const handleMouseDown = (e: React.MouseEvent) => {
+        e.preventDefault();
+        isResizingRef.current = true;
+        document.body.style.cursor = 'col-resize';
+        document.body.style.userSelect = 'none';
+    };
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
@@ -193,7 +200,7 @@ const DocumentEditor: React.FC = () => {
                     style={{
                         width: '5px',
                         cursor: 'col-resize',
-                        backgroundColor: isResizing ? '#3b82f6' : '#e2e8f0',
+                        backgroundColor: isResizingRef.current ? '#3b82f6' : '#e2e8f0',
                         position: 'relative',
                         zIndex: 5,
                         transition: 'background-color 0.2s',
@@ -201,7 +208,7 @@ const DocumentEditor: React.FC = () => {
                         borderRight: '1px solid #cbd5e1'
                     }}
                     onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3b82f6'}
-                    onMouseLeave={(e) => !isResizing && (e.currentTarget.style.backgroundColor = '#e2e8f0')}
+                    onMouseLeave={(e) => !isResizingRef.current && (e.currentTarget.style.backgroundColor = '#e2e8f0')}
                 >
                     <div style={{
                         position: 'absolute',
@@ -213,7 +220,7 @@ const DocumentEditor: React.FC = () => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        backgroundColor: isResizing ? '#3b82f6' : '#94a3b8',
+                        backgroundColor: isResizingRef.current ? '#3b82f6' : '#94a3b8',
                         borderRadius: '4px',
                         pointerEvents: 'none'
                     }}>
@@ -239,7 +246,7 @@ const DocumentEditor: React.FC = () => {
                 .input-label { display: block; font-size: 11px; font-weight: 600; color: #64748b; margin-bottom: 4px; text-transform: uppercase; }
                 .input-field { width: 100%; padding: 8px; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 4px; outline: none; }
                 .input-field:focus { border-color: #2563eb; }
-                .document-editor-sidebar { user-select: ${isResizing ? 'none' : 'auto'}; }
+                .document-editor-sidebar { user-select: ${isResizingRef.current ? 'none' : 'auto'}; }
             `}</style>
         </div>
     );
